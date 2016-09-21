@@ -1,0 +1,29 @@
+apply plugin: 'scala'
+
+group = 'com.wirecard.codingdojo'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven {
+        url 'http://d-issrepo-app01.wirecard.sys:8081/nexus/content/repositories/snapshots'
+    }
+    maven {
+        url 'http://q-issrepo-app01.wirecard.sys:8081/nexus/content/repositories/releases'
+    }
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    // We use Scala 2.11 in our library project
+    compile 'org.scala-lang:scala-library:2.11.2'
+    compile 'net.sf.robocode:robocode.api:1.9.2.1'
+
+    // We use Scalatest for testing our library
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.scalatest:scalatest_2.11:2.2.2'
+    testRuntime 'org.scala-lang.modules:scala-xml_2.11:1.0.2'
+}
