@@ -5,8 +5,8 @@
  * @author fabio.oliveira, @date 21.09.16 11:05
  */
 
-import org.scalatest.FunSuite
 import org.junit.runner.RunWith
+import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
