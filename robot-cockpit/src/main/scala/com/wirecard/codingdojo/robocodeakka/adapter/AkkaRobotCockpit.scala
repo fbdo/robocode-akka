@@ -21,30 +21,17 @@ class AkkaRobotCockpit extends Robot {
 
   override def run() = {
     while (true) {
-      implicit val timeout = Timeout(1 seconds)
-
-      val future = ref ? NextCommand
-
-      val result = Await.result(future, timeout.duration).asInstanceOf[RobotCommand]
-
-      result match {
-        case Ahead(x) => ahead(x)
-        case TurnGunRight(x) => turnGunRight(x)
-        case Back(x) => back(x)
-        case Fire(x) => fire(x)
-        case _ => doNothing()
-      }
-
-      //ahead(100);
-      //turnGunRight(360);
-      //back(100);
-      //turnGunRight(360);
+      triggerEvent(NextCommand())
     }
   }
 
   override def onScannedRobot(e: ScannedRobotEvent) = {
+    triggerEvent(ScannedRobot(e.getName, e.getEnergy, e.getHeading, e.getBearing, e.getDistance, e.getVelocity, e.isSentryRobot))
+  }
+
+  def triggerEvent(message: RobotEvents): Unit = {
     implicit val timeout = Timeout(1 seconds)
-    val future = ref ? ScannedRobot(e.getName, e.getEnergy, e.getHeading, e.getBearing, e.getDistance, e.getVelocity, e.isSentryRobot)
+    val future = ref ? message
 
     val result = Await.result(future, timeout.duration).asInstanceOf[RobotCommand]
 
@@ -58,7 +45,7 @@ class AkkaRobotCockpit extends Robot {
   }
 
   override def onBattleEnded(e: BattleEndedEvent) = {
-    ref ! PoisonPill
+    ref ! PoisonPill.getInstance
   }
 
 }
