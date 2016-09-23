@@ -1,0 +1,6 @@
+dependencies {
+    compile project(':robot-api')
+    compile 'com.typesafe.akka:akka-actor_2.11:2.4.10'
+    compile 'com.typesafe.akka:akka-remote_2.11:2.4.10'
+    compile 'com.typesafe.akka:akka-slf4j_2.11:2.4.10'
+}

@@ -1,6 +1,6 @@
 package com.wirecard.codingdojo.robocodeakka.adapter
 
-import akka.actor.{ActorSystem, Props}
+import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.util.Timeout
 import com.wirecard.codingdojo.robocodeakka.messages._
@@ -16,7 +16,7 @@ class AkkaRobotCockpit extends Robot {
 
   val system = ActorSystem()
 
-  val ref = system.actorOf(Props(new AkkaRobotPilot))
+  val ref = system.actorSelection("akka.tcp://robocodeActorSystem@localhost:2552/user/robopilot")
 
 
   override def run() = {

@@ -1,4 +1,4 @@
-package com.wirecard.codingdojo.robocodeakka.adapter
+package com.wirecard.codingdojo.robocodeakka.pilot
 
 import akka.actor.Actor
 import com.wirecard.codingdojo.robocodeakka.messages._
