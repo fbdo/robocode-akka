@@ -43,7 +43,7 @@ class AkkaRobotCockpit extends Robot {
   }
 
   override def onScannedRobot(e: ScannedRobotEvent) = {
-    ref ! ScannedRobot
+    ref ! ScannedRobot(e.getName, e.getEnergy, e.getHeading, e.getBearing, e.getDistance, e.getVelocity, e.isSentryRobot)
     //fire(1)
   }
 

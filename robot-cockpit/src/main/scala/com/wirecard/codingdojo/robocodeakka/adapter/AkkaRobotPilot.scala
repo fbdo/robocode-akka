@@ -16,14 +16,15 @@ class AkkaRobotPilot extends Actor {
   var count = 0
 
   override def receive: Receive = {
-    case ScannedRobot => sender ! logCommand(Fire(1))
-    case NextCommand => sender ! {
+    case ScannedRobot(_, _, _, _, _, _, _) => sender ! logCommand(Fire(1))
+    case NextCommand => sender ! logCommand({
       count = count + 1; commands(count % 4)
-    }
+    })
   }
 
   def logCommand(command: RobotCommand): RobotCommand = {
-    log.debug("Received command [{}]", command)
+    System.out.println("Sending command " + command)
+    log.debug("Sending command [{}]", command)
     command
   }
 

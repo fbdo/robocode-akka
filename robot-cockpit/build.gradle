@@ -1,3 +1,10 @@
+jar {
+    manifest {
+        attributes("robots": "com.wirecard.codingdojo.robocodeakka.adapter.AkkaRobotCockpit",
+                "Implementation-Version": version)
+    }
+}
+
 dependencies {
     compile project(':robot-api')
     compile 'com.typesafe.akka:akka-actor_2.11:2.4.10'
