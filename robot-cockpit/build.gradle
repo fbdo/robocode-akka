@@ -9,6 +9,12 @@ jar {
     }
 }
 
+shadowJar {
+    transform(com.github.jengelman.gradle.plugins.shadow.transformers.AppendingTransformer) {
+        resource = 'reference.conf'
+    }
+}
+
 dependencies {
     compile project(':robot-api')
     compile 'com.typesafe.akka:akka-actor_2.11:2.4.10'

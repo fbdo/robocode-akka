@@ -1,6 +1,5 @@
 package com.wirecard.codingdojo.robocodeakka.adapter
 
-import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.util.Timeout
 import com.wirecard.codingdojo.robocodeakka.messages._
@@ -14,10 +13,7 @@ import scala.concurrent.duration._
   */
 class AkkaRobotCockpit extends Robot {
 
-  val system = ActorSystem()
-
-  val ref = system.actorSelection("akka.tcp://robocodeActorSystem@localhost:2552/user/robopilot")
-
+  val ref = AkkaRobotPilotRef.ref
 
   override def run() = {
     while (true) {
@@ -43,6 +39,7 @@ class AkkaRobotCockpit extends Robot {
 
   override def onBattleEnded(e: BattleEndedEvent) = {
     ref ! BattleEnded()
+
   }
 
 }
