@@ -1,6 +1,6 @@
 package com.wirecard.codingdojo.robocodeakka.adapter
 
-import akka.actor.{ActorSystem, PoisonPill, Props}
+import akka.actor.{ActorSystem, Props}
 import akka.pattern.ask
 import akka.util.Timeout
 import com.wirecard.codingdojo.robocodeakka.messages._
@@ -36,16 +36,13 @@ class AkkaRobotCockpit extends Robot {
     val result = Await.result(future, timeout.duration).asInstanceOf[RobotCommand]
 
     result match {
-      case Ahead(x) => ahead(x)
-      case TurnGunRight(x) => turnGunRight(x)
-      case Back(x) => back(x)
-      case Fire(x) => fire(x)
+      case x: RobotCommand => x.apply(this)
       case _ => doNothing()
     }
   }
 
   override def onBattleEnded(e: BattleEndedEvent) = {
-    ref ! PoisonPill.getInstance
+    ref ! BattleEnded()
   }
 
 }

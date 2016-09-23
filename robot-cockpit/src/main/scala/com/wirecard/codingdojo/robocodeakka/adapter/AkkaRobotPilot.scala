@@ -17,6 +17,7 @@ class AkkaRobotPilot extends Actor {
     case NextCommand() => sender ! {
       count = count + 1; commands(count % 4)
     }
+    case BattleEnded() => context stop self
     case _ => sender ! DoNothing()
   }
 

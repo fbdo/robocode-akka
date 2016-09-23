@@ -9,4 +9,4 @@ case class NextCommand() extends RobotEvents
 
 case class ScannedRobot(name: String, energy: Double, heading: Double, bearing: Double, distance: Double, velocity: Double, sentryRobot: Boolean) extends RobotEvents
 
-
+case class BattleEnded() extends RobotEvents
