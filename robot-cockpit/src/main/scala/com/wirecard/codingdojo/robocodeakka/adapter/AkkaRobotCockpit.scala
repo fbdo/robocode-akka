@@ -43,8 +43,18 @@ class AkkaRobotCockpit extends Robot {
   }
 
   override def onScannedRobot(e: ScannedRobotEvent) = {
-    ref ! ScannedRobot(e.getName, e.getEnergy, e.getHeading, e.getBearing, e.getDistance, e.getVelocity, e.isSentryRobot)
-    //fire(1)
+    implicit val timeout = Timeout(1 seconds)
+    val future = ref ? ScannedRobot(e.getName, e.getEnergy, e.getHeading, e.getBearing, e.getDistance, e.getVelocity, e.isSentryRobot)
+
+    val result = Await.result(future, timeout.duration).asInstanceOf[RobotCommand]
+
+    result match {
+      case Ahead(x) => ahead(x)
+      case TurnGunRight(x) => turnGunRight(x)
+      case Back(x) => back(x)
+      case Fire(x) => fire(x)
+      case _ => doNothing()
+    }
   }
 
   override def onBattleEnded(e: BattleEndedEvent) = {
