@@ -16,4 +16,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'robot-agent'
+rootProject.name = 'robot-pilot'

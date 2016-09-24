@@ -1,3 +1,7 @@
+apply plugin: 'application'
+
+mainClassName = "com.wirecard.codingdojo.robocodeakka.pilot.AkkaRobotPilotMain"
+
 dependencies {
     compile project(':robot-api')
     compile 'com.typesafe.akka:akka-actor_2.11:2.4.10'

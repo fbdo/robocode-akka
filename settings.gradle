@@ -1,1 +1,3 @@
 include 'robot-api', 'robot-cockpit', 'robot-pilot'
+
+rootProject.name = 'robot-akka'
