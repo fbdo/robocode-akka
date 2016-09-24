@@ -11,18 +11,14 @@ import scala.concurrent.duration._
 /**
   * @author <a href="mailto:fabio.oliveira@wirecard.com">Fabio Oliveira</a>
   */
-class AkkaRobotCockpit extends Robot {
+class AkkaRobotCockpit() extends Robot {
 
-  val ref = AkkaRobotPilotRef.ref
+  val ref = AkkaRobotPilotRef.ref("akka.tcp://AkkaRobotPilotSystem@192.168.0.19:2552/user/robopilot")
 
   override def run() = {
     while (true) {
       triggerEvent(NextCommand())
     }
-  }
-
-  override def onScannedRobot(e: ScannedRobotEvent) = {
-    triggerEvent(ScannedRobot(e.getName, e.getEnergy, e.getHeading, e.getBearing, e.getDistance, e.getVelocity, e.isSentryRobot))
   }
 
   def triggerEvent(message: RobotEvents): Unit = {
@@ -35,6 +31,10 @@ class AkkaRobotCockpit extends Robot {
       case x: RobotCommand => x.apply(this)
       case _ => doNothing()
     }
+  }
+
+  override def onScannedRobot(e: ScannedRobotEvent) = {
+    triggerEvent(ScannedRobot(e.getName, e.getEnergy, e.getHeading, e.getBearing, e.getDistance, e.getVelocity, e.isSentryRobot))
   }
 
   override def onBattleEnded(e: BattleEndedEvent) = {
