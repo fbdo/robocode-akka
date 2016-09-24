@@ -1,6 +1,16 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
 apply plugin: 'application'
 
 mainClassName = "com.wirecard.codingdojo.robocodeakka.pilot.AkkaRobotPilotMain"
+
+shadowJar {
+    transform(com.github.jengelman.gradle.plugins.shadow.transformers.AppendingTransformer) {
+        resource = 'reference.conf'
+    }
+}
 
 dependencies {
     compile project(':robot-api')
