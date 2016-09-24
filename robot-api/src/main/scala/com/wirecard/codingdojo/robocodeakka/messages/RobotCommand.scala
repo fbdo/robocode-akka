@@ -64,6 +64,48 @@ case class GetY() extends RobotCommand {
   }
 }
 
+case class TurnLeft(degrees: Double) extends RobotCommand {
+  def apply(robot: Robot, ref: ActorSelection): Unit = {
+    robot.turnLeft(degrees)
+  }
+}
+
+case class TurnRight(degrees: Double) extends RobotCommand {
+  def apply(robot: Robot, ref: ActorSelection): Unit = {
+    robot.turnRight(degrees)
+  }
+}
+
+case class GetGunHeading() extends RobotCommand {
+  def apply(robot: Robot, ref: ActorSelection): Unit = {
+    ref ! GunHeading(robot.getGunHeading())
+  }
+}
+
+case class GetGunHeat() extends RobotCommand {
+  def apply(robot: Robot, ref: ActorSelection): Unit = {
+    ref ! GunHeat(robot.getGunHeat())
+  }
+}
+
+case class GetOthers() extends RobotCommand {
+  def apply(robot: Robot, ref: ActorSelection): Unit = {
+    ref ! Others(robot.getOthers())
+  }
+}
+
+case class GetRadarHeading() extends RobotCommand {
+  def apply(robot: Robot, ref: ActorSelection): Unit = {
+    ref ! RadarHeading(robot.getRadarHeading())
+  }
+}
+
+case class GetVelocity() extends RobotCommand {
+  def apply(robot: Robot, ref: ActorSelection): Unit = {
+    ref ! Velocity(robot.getVelocity())
+  }
+}
+
 
 
 
