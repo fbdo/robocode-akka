@@ -38,3 +38,5 @@ case class BulletMissed(bullet: Bullet) extends RobotEvents
 case class HitByBullet(bearing: Double, bullet: Bullet) extends RobotEvents
 
 case class HitRobot(name: String, bearing: Double, energy: Double, myFault: Boolean) extends RobotEvents
+
+case class HitWall(bearing: Double) extends RobotEvents

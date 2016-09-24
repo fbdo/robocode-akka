@@ -47,6 +47,10 @@ class AkkaRobotCockpit() extends Robot {
     triggerEvent(HitRobot(event.getName, event.getBearing, event.getEnergy, event.isMyFault))
   }
 
+  override def onHitWall(event: HitWallEvent): Unit = {
+    triggerEvent(HitWall(event.getBearing))
+  }
+
   def triggerEvent(message: RobotEvents): Unit = {
     implicit val timeout = Timeout(0.5 seconds)
     val future = ref ? message
