@@ -4,7 +4,7 @@ plugins {
 
 apply plugin: 'application'
 
-mainClassName = "com.wirecard.codingdojo.robocodeakka.pilot.AkkaRobotPilotMain"
+mainClassName = "com.github.fbdo.robocodeakka.pilot.AkkaRobotPilotMain"
 
 shadowJar {
     transform(com.github.jengelman.gradle.plugins.shadow.transformers.AppendingTransformer) {

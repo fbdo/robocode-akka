@@ -4,7 +4,7 @@ plugins {
 
 jar {
     manifest {
-        attributes("robots": "com.wirecard.codingdojo.robocodeakka.adapter.AkkaRobotCockpit",
+        attributes("robots": "com.github.fbdo.robocodeakka.adapter.AkkaRobotCockpit",
                 "Implementation-Version": version)
     }
 }

@@ -2,7 +2,7 @@ subprojects {
     apply plugin: 'scala'
     apply plugin: 'maven'
 
-    group = 'com.wirecard.codingdojo.robocode-akka'
+    group = 'com.github.fbdo.robocodeakka'
     version = '1.0.0-SNAPSHOT'
 
     sourceCompatibility = 1.8
@@ -10,12 +10,6 @@ subprojects {
 
     repositories {
         mavenLocal()
-        maven {
-            url 'http://d-issrepo-app01.wirecard.sys:8081/nexus/content/repositories/snapshots'
-        }
-        maven {
-            url 'http://q-issrepo-app01.wirecard.sys:8081/nexus/content/repositories/releases'
-        }
         jcenter()
         mavenCentral()
     }
